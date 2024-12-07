@@ -1,6 +1,6 @@
 Proyecto UniversityApi
 Requisitos
-.NET8
+.NET7
 dotnet run
 
 Proyecto unversty-client
