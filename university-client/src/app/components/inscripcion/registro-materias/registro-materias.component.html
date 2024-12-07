@@ -1,0 +1,75 @@
+<h4 class="ms-3 my-3 text-primary fw-bold">
+  Inscribir Materias
+</h4>
+<div class="mx-2 mt-2 border-buttom background-form">
+  <div class="border-bottom border-left border-right p-3">
+    <div class="spinner-border text-secondary spinner-border-sm m-2" role="status" *ngIf="loading">
+      <span class="sr-only">Loading...</span>
+    </div>
+
+    <h5 *ngIf="sinCreditos; else elseBlock">No puede inscribir materias ya que no tiene créditos asignados
+    </h5>
+    <ng-template #elseBlock>
+      <div style="max-height: 250px;overflow-y: scroll;">
+        <table class="table table-hover table-sm">
+          <thead>
+            <tr>
+              <th>Titulo</th>
+              <th>Docente</th>
+              <th>Creditos</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of materias">
+              <td>{{ item.titulo}}</td>
+              <td>{{ item.profesor }}</td>
+              <td>{{ item.creditos }}</td>
+              <td style="width: fit-content;">
+                <i>
+                  <fa-icon [icon]="['fas', 'check']" matTooltip="Inscribir" type="button"
+                    (click)="seleccionarMateria(item)" />
+                </i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- Menús asignados -->
+      <ul class="list-group mt-2">
+        <li *ngIf="materiasSeleccionadas.length > 0" class="list-group-item active p-2"
+          style="background-color: #1976D2;">
+          <div>
+            <span class="fw-semibold">Materias seleccionadas: {{ materiasSeleccionadas.length }}</span>
+          </div>
+        </li>
+      </ul>
+      <table class="table table-hover table-sm">
+        <thead>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of materiasSeleccionadas">
+            <td>{{ item.titulo}}</td>
+            <td>{{ item.profesor }}</td>
+            <td>{{ item.creditos }}</td>
+            <td style="width: fit-content;">
+              <i>
+                <fa-icon class="ico-red" [icon]="['fas', 'trash']" matTooltip="Eliminar materia" type="button"
+                  (click)="eliminarMateria(item)" />
+              </i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="list-group-item d-flex justify-content-between mt-4">
+        <span>Creditos: {{ creditos }}</span>
+
+        <button [disabled]="materiasSeleccionadas.length < 3" matTooltip="Guardar cambios" (click)="inscribirMaterias()"
+          class="btn btn-primary btn-sm bgc-blue">
+          <fa-icon [icon]="['fas', 'save']"></fa-icon> Guardar
+        </button>
+      </div>
+    </ng-template>
+  </div>
+</div>

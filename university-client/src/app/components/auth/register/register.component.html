@@ -1,0 +1,67 @@
+<div class="bg">
+  <div class="container">
+    <mat-card class="form-signin">
+      <div class="d-flex m-0">
+        <img mat-card-image class="mt-0" style="width: 70px;" src="assets/images/university-classroom-svgrepo-com.svg" alt="">
+        <h1 class="mt-4 ms-3 fs-2">InterUniversity</h1>
+      </div>
+      <mat-card-content>
+        <form [formGroup]="formBuilder.formGroup" (ngSubmit)="register()">
+          <h5 class="text-center fw-bold mx-3 my-2 color-blue">Registro de Estudiantes</h5>
+          <div class="form-outline">
+            <label class="form-label">Numero de identificación</label>
+            <app-input id="numeroIdentificacion" placeholder="Ingrese su numero de identificación" [formBuilder]="formBuilder" />
+          </div>
+
+          <div class="form-outline">
+            <label class="form-label">Nombres</label>
+            <app-input id="nombres" placeholder="Ingrese sus nombres" [formBuilder]="formBuilder" />
+          </div>
+
+          <div class="form-outline">
+            <label class="form-label">Apellidos</label>
+            <app-input id="apellidos" placeholder="Ingrese sus apellidos" [formBuilder]="formBuilder" />
+          </div>
+
+          <div class="form-outline">
+            <label class="form-label">Fecha de Nacimiento</label>
+            <app-input id="fechaNacimiento" type="date" [formBuilder]="formBuilder" />
+          </div>
+
+          <div class="form-outline mb-3">
+            <label class="form-label">Contraseña</label>
+            <div class="input-group">
+              <input type="{{visible ? 'text' : 'password'}}" class="form-control" [ngClass]="{'is-invalid': formBuilder.formErrors['contrasena']}"
+                placeholder="Ingrese la contraseña" formControlName="contrasena" />
+              <button type="button" class="btn btn-sm btn-light" matTooltip="{{visible ? 'Ocultar' : 'Mostrar'}}"
+                (click)="visible = !visible">
+                <fa-icon [icon]="['fas', visible ? 'eye-slash' : 'eye']"></fa-icon>
+              </button>
+            </div>
+            <small class="text-danger">{{ formBuilder.formErrors['contrasena'] }}</small>
+          </div>
+
+          <div class="form-outline mb-3">
+            <label class="form-label">Repita la Contraseña</label>
+            <div class="input-group">
+              <input type="{{visible2 ? 'text' : 'password'}}" class="form-control" [ngClass]="{'is-invalid': formBuilder.formErrors['contrasenaRepetida']}"
+                placeholder="Repita la contraseña" formControlName="contrasenaRepetida" />
+              <button type="button" class="btn btn-sm btn-light" matTooltip="{{visible2 ? 'Ocultar' : 'Mostrar'}}"
+                (click)="visible2 = !visible2">
+                <fa-icon [icon]="['fas', visible2 ? 'eye-slash' : 'eye']"></fa-icon>
+              </button>
+            </div>
+            <small class="text-danger">{{ formBuilder.formErrors['contrasenaRepetida'] }}</small>
+          </div>
+
+          <div class="text-center text-lg-start mt-2 pt-2">
+            <button type="submit" class="btn btn-primary btn-lg bgc-blue" [disabled]="form.invalid">
+              Registrarse
+            </button>
+            <p class="p-0 mt-2"><a routerLink="/login" class="link-primary">Iniciar sesión</a></p>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

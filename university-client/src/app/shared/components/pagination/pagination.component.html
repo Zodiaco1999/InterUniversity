@@ -1,0 +1,17 @@
+<div class="d-flex">
+  <ngb-pagination class="pagination p-2"
+    [collectionSize]="totalRecords"
+    [(page)]="service!.page"
+    [pageSize]="service!.pageSize"
+    [maxSize]="maxSize"
+    [size]="size"
+    [boundaryLinks]="boundaryLinks">
+  </ngb-pagination>
+  <span class="pt-3" [ngClass]="{'span-mb': size === 'sm'}">Registros por página</span>
+  <div class="p-2">
+    <select class="form-select form-select-{{size}}" [(ngModel)]="service!.pageSize">
+      <option *ngFor="let p of pageSizes" [ngValue]=p>{{p}}</option>
+    </select>
+  </div>
+  <span class="pt-3 span-end">{{recordNumber}} - {{recordMaxPage}} de {{totalRecords}}</span>
+</div>

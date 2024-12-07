@@ -1,0 +1,22 @@
+<h4 class="ms-3 my-3 text-success fw-bold">
+  {{ clase.titulo }}
+</h4>
+<div class="mx-2 mt-2 border-buttom background-form">
+  <div class="border-bottom border-left border-right p-3">
+    <div class="fs-4 d-flex">
+      <p class="fw-bold me-2">Docente: </p><span>{{ clase.profesor }}</span>
+    </div>
+    <table class="table table-hover table-sm">
+      <thead>
+        <tr>
+          <th>Estudiantes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of clase.estudiantes">
+          <td>{{ item }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

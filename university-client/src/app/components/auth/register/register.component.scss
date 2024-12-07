@@ -1,0 +1,32 @@
+
+.bg {
+  background-image: url('../../../../assets/images/banner.jpg');
+  background-position: center top;
+  background-repeat: repeat-y;
+  background-size: cover;
+  min-height: 100vh;
+  position: relative;
+  width: 100%;
+}
+
+.form-signin {
+  position: relative;
+  margin: 0 auto;
+  padding: 20px 50px;
+  width: 480px;
+  border-radius: 24px;
+  border: 1px solid #e6e6e6;
+  background: #ffffff6b;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px;
+}
+
+h1 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

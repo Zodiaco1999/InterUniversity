@@ -1,0 +1,22 @@
+<h4 class="ms-3 my-3 fw-bold text-success">
+  Mis clases
+</h4>
+
+<div class="ms-3 d-flex">
+  <ng-container *ngFor="let item of clases">
+    <div class="card col-4 me-5 d-flex flex-column" style="width: 18rem;">
+      <img src="assets/images/libros.avif" class="card-img-top img-md" >
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title">{{ item.titulo }}</h5>
+        <p class="card-text">
+          <span class="fw-bold">Profesor:</span> {{ item.profesor }}
+        </p>
+        <a
+          [routerLink]="['/clases/', item.materiaId, item.profesorId]"
+          class="btn btn-success mt-auto align-self-end">
+          <fa-icon [icon]="['fas', 'search']"></fa-icon> Ver clase
+        </a>
+      </div>
+    </div>
+  </ng-container>
+</div>

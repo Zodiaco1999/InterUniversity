@@ -1,0 +1,29 @@
+<header class="header fixed-header flex-column flex-md-row text-center text-md-start" style="background-color: #F8F9FA;">
+  <div class="mx-2 d-flex justify-content-between">
+    <div class="d-flex align-items-center">
+        <a class="cursor me-2" aria-label="Menu" (click)="activar(mostrar = !mostrar)">
+          <fa-icon [icon]="['fas', 'bars']" size="lg" [fixedWidth]="true" style="color: #6C757D;"></fa-icon>
+        </a>
+        <img class="ico-nav" src="assets/images/university-classroom-svgrepo-com.svg" alt="">
+        <a class="nav-link">
+          <h3 class="text-dark mt-2 ff-verdana">InterUniversity</h3>
+        </a>
+    </div>
+    <div *ngIf="islogged" >
+      <button
+        class="btn nav-link"
+        matTooltip="{{ authService.getUserName() }}"
+        [matMenuTriggerFor]="menu">
+        <img src="assets/images/usuarioLogin.png" alt="Perfil" class="rounded-circle img-user" />
+      </button>
+      <mat-menu #menu="matMenu">
+        <a *ngIf="myDataVisible" mat-menu-item [routerLink]="['/usuario', authService.getUserId()]">
+          <fa-icon [icon]="['fas', 'user']" style="color: blueviolet"></fa-icon> Mis datos
+        </a>
+        <a mat-menu-item (click)="logout()">
+          <fa-icon [icon]="['fas', 'sign-out-alt']" style="color: blueviolet"></fa-icon> Cerrar sesión
+        </a>
+      </mat-menu>
+    </div>
+  </div>
+</header>

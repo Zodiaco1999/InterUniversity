@@ -1,0 +1,11 @@
+<ng-container [formGroup]="formBuilder.formGroup">
+  <input
+    [type]="type"
+    class="form-control"
+    [ngClass]="{'is-invalid': formBuilder.formErrors[id]}"
+    [placeholder]="placeholder"
+    [readOnly]="readOnly"
+    [formControlName]="id" />
+  <small class="text-danger">{{ formBuilder.formErrors[id] }}</small>
+</ng-container>
+

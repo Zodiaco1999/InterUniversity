@@ -1,0 +1,77 @@
+@use '@angular/material' as mat;
+@include mat.core();
+
+$my-primary: mat.define-palette(mat.$blue-palette, 700, 300, 900);
+$my-accent: mat.define-palette(mat.$light-blue-palette);
+
+$my-theme: mat.define-light-theme((
+ color: (
+   primary: $my-primary,
+   accent: $my-accent,
+ ),
+ typography: mat.define-typography-config(),
+ density: 0,
+));
+
+@include mat.all-component-themes($my-theme);
+
+mat-form-field {
+  height: 60px;
+}
+
+mat-label {
+  font-size: 12px;
+}
+
+mat-option {
+  font-size: 13px;
+}
+
+.small-placeholder::placeholder {
+  font-size: 13px;
+}
+
+.mat-mdc-text-field-wrapper:not(.mdc-text-field--outlined) .mat-mdc-form-field-infix {
+  padding-top: 25px;
+  padding-bottom: 10px;
+  margin-top: -12px;
+}
+
+.mat-mdc-select-value-text {
+  font-size: 13px;
+}
+
+.svg-inline--fa {
+  margin-top: -10px;
+  margin-right: 5px;
+}
+
+.mat-mdc-select-panel-above div.mat-mdc-select-panel {
+  padding: 0;
+}
+
+.cdk-overlay-pane:not(.mat-mdc-select-panel-above) div.mat-mdc-select-panel {
+  padding: 0;
+}
+
+.mat-mdc-option.mdc-list-item {
+  align-items: center;
+  min-height: 32px;
+}
+
+.mat-mdc-checkbox label {
+  font-size: 12px;
+}
+
+.mat-form-field-date-picker {
+  width: 100%;
+  margin-bottom: -30px;
+}
+
+.mat-mdc-menu-content {
+  padding: 0 !important;
+}
+
+.mat-mdc-menu-content, .mat-mdc-menu-content .mat-mdc-menu-item .mdc-list-item__primary-text {
+  font-size: 14px;
+}

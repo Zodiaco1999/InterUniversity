@@ -1,0 +1,23 @@
+<div class="p-2 container">
+    <div>
+      <div *ngFor="let module of modules" >
+        <p class="menu-module" [attr.active]="module.active ? 'active' : ''">
+          <a (click)="module_click( module.id)" [attr.aria-expanded]="module.open"
+            attr.aria-controls="collapse{{ module.id }}">
+            <fa-icon [icon]="module.icon" class="menu-module-i" size="sm"></fa-icon>
+            {{ module.name }}
+            <span class="menu-module-id"></span>
+          </a>
+        </p>
+        <div attr.id="collapse{{ module.id }}" [ngbCollapse]="!module.open" class="menu-subitem">
+          <ul>
+            <li *ngFor="let option of module.options" [attr.active]="option.active ? 'active' : ''">
+              <a routerLink="{{ option.url }}" (click)="option_click(module.id, option.id!)">
+                <span class="p-1">{{ option.name }}</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+<h4 class="ms-3 my-3 text-primary fw-bold">
+  Mis Datos
+</h4>
+<div class="mx-2 mt-2 border-buttom background-form">
+  <div class="border-bottom border-left border-right p-3">
+    <div *ngIf="!delete; else elseBlock">
+      <form [formGroup]="form">
+        <div class="row">
+          <div class="col-4">
+            <label class="form-label">Numero Indentificación</label>
+            <app-input id="numeroIdentificacion" placeholder="Ingrese su identificación" [formBuilder]="formBuilder" />
+          </div>
+          <div class="col-4">
+            <label class="form-label">Nombres</label>
+            <app-input id="nombres" placeholder="Ingrese sus apellidos" [formBuilder]="formBuilder" />
+          </div>
+          <div class="col-4">
+            <label class="form-label">Apellidos</label>
+            <app-input id="apellidos" placeholder="Ingrese sus apellidos" [formBuilder]="formBuilder" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <label class="form-label">Fecha Nacimiento</label>
+            <app-input id="fechaNacimiento" type="date" [formBuilder]="formBuilder" />
+          </div>
+          <div class="col-4">
+            <label class="form-label">Creditos</label>
+            <app-input id="creditos" [readOnly]="true" [formBuilder]="formBuilder" />
+          </div>
+          <div class="col-4">
+            <label class="form-label">Fecha Inscripción</label>
+            <app-input id="fechaInscrito" type="date" [readOnly]="true" [formBuilder]="formBuilder" />
+          </div>
+        </div>
+
+        <div class="list-group-item d-flex justify-content-end mt-4">
+          <button matTooltip="Eliminar mi usuario" (click)="resetIdentificacion()"
+            class="btn btn-danger btn-sm me-3">
+            <fa-icon [icon]="['fas', 'trash']"></fa-icon> Eliminar
+          </button>
+
+          <button [disabled]="form.invalid" matTooltip="Guardar cambios" (click)="guardar()"
+            class="btn btn-primary btn-sm bgc-blue">
+            <fa-icon [icon]="['fas', 'save']"></fa-icon> Guardar
+          </button>
+        </div>
+      </form>
+    </div>
+    <ng-template #elseBlock>
+      <form [formGroup]="form">
+        <div class="col-4">
+          <label class="form-label">Numero Indentificación</label>
+          <app-input id="numeroIdentificacion" placeholder="Ingrese su identificación para continuar" [formBuilder]="formBuilder" />
+          <div class="list-group-item d-flex justify-content-end mt-4">
+
+
+            <button matTooltip="Cancelar" (click)="resetForm()"
+              class="btn btn-light btn-sm me-3">
+              <fa-icon [icon]="['fas', 'save']"></fa-icon> Cancelar
+            </button>
+
+            <button [disabled]="form.get('numeroIdentificacion')?.value !== numeroIdentificacion" matTooltip="Eliminar mi usuario"
+              (click)="eliminar()" class="btn btn-danger btn-sm me-3">
+              <fa-icon [icon]="['fas', 'trash']"></fa-icon> Eliminar mi usuario
+            </button>
+          </div>
+        </div>
+      </form>
+    </ng-template>
+  </div>
+</div>

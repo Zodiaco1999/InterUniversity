@@ -1,0 +1,20 @@
+<ngb-toast *ngFor="let toast of toastService.toasts" [class]="toast.className" [autohide]="true"
+  [delay]="toast.closeTime || 5000" (hidden)="toastService.remove(toast)">
+  <div>
+    <button *ngIf="toast.buttonClose" type="button" class="close btn-sm" aria-label="Close"
+      (click)="toastService.remove(toast)">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>
+      <fa-icon *ngIf="toast.type === 0" [icon]="['fas', 'thumbs-up']"></fa-icon>
+      <fa-icon *ngIf="toast.type === 1" [icon]="['fas', 'exclamation-circle']"></fa-icon>
+      <fa-icon *ngIf="toast.type === 2" [icon]="['fas', 'exclamation-triangle']"></fa-icon>
+      <fa-icon *ngIf="toast.type === 3" [icon]="['fas', 'thumbs-down']"></fa-icon>
+      {{toast.title}}
+    </strong><br>
+    {{toast.text}}
+    <i *ngIf="toast.detail" title=" {{ toast.detail }}">
+      <fa-icon [icon]="['fas', 'info-circle']"></fa-icon>
+    </i>
+  </div>
+</ngb-toast>

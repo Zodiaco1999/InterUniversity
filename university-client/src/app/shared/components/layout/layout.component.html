@@ -1,0 +1,20 @@
+<app-header (mostrarMenu)="activar($event)"/>
+<div class="d-flex flex-column justify-content-between">
+  <div class="container-fluid">
+    <div class="row flex-xl-nowrap">
+      <div *ngIf="mostrarMenu" class="col-md-3 col-xl-2 bd-sidebar hide-mobile">
+        <div class="col-md-3 col-xl-2 p-0 bg-light side-bar">
+          <app-menu (mostrarMenu)="activar($event)"></app-menu>
+        </div>
+      </div>
+      <main role="main" class="col-12 col-md-{{mostrarMenu ? 9 : 12}} col-xl-{{mostrarMenu ? 10 : 12}} py-md-2 px-0 bd-content main">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+  </div>
+</div>
+<footer class="footer fixed-footer">
+  <div class="col-12">
+    <small>Copyright © {{date}}. Todos los derechos reservados. Desarrollado por <a  target="_blank" href="https://www.linkedin.com/in/brayan-styd-baez-ab75911b4/" >Brayan Baez</a></small>
+  </div>
+</footer>

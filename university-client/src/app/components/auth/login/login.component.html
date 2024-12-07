@@ -1,0 +1,47 @@
+<div class="bg">
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <mat-card class="form-signin">
+      <div class="d-flex m-0">
+        <img mat-card-image class="mt-0" style="width: 70px;" src="assets/images/university-classroom-svgrepo-com.svg" alt="">
+        <h1 class="mt-4 ms-3 fs-2">InterUniversity</h1>
+      </div>
+      <mat-card-content>
+        <form [formGroup]="formBuilder.formGroup" (ngSubmit)="login()">
+          <h5 class="text-center fw-bold mx-3 my-2 color-blue">Inicio de sesión</h5>
+
+          <div class="form-outline ">
+            <label class="form-label">Usuario</label>
+            <app-input id="numeroIdentificacion" placeholder="Ingrese su numero de identificación" [formBuilder]="formBuilder" />
+          </div>
+
+          <div class="form-outline mb-3">
+            <label class="form-label">Contraseña</label>
+            <div class="input-group">
+              <input type="{{visible ? 'text' : 'password'}}" class="form-control" [ngClass]="{'is-invalid': formBuilder.formErrors['contrasena']}"
+                placeholder="Ingrese su contraseña" formControlName="contrasena" />
+              <button type="button" class="btn btn-sm btn-light" matTooltip="{{visible ? 'Ocultar' : 'Mostrar'}}"
+                (click)="visible = !visible">
+                <fa-icon [icon]="['fas', visible ? 'eye-slash' : 'eye']"></fa-icon>
+              </button>
+            </div>
+            <small class="text-danger">{{ formBuilder.formErrors['contrasena'] }}</small>
+          </div>
+
+          <div class="text-center text-lg-start mt-2 pt-2">
+            <button type="submit" class="btn btn-primary btn-lg bgc-blue" [disabled]="isLoading">
+              <ng-container *ngIf="isLoading; else elseNotDone">
+                <div class="spinner-border text-white" style="height: 20px; width: 20px" role="status">
+                    <span class="visually-hidden">Cargando...</span>
+                </div>
+              </ng-container>
+              <ng-template #elseNotDone> Continuar </ng-template>
+            </button>
+            <p class="mt-2 pt-1 mb-0">¿No tiene usuario? <a routerLink="/register"
+                class="link-primary">Regístrese</a></p>
+          </div>
+        </form>
+
+      </mat-card-content>
+    </mat-card>
+  </form>
+</div>

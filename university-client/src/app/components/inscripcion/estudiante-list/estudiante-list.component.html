@@ -1,0 +1,31 @@
+<h4 class="ms-3 my-3 fw-bold">
+  Registro Estudiantes
+</h4>
+<div class="mx-2 mt-2 border-buttom background-form">
+  <div class="border-bottom border-left border-right p-3">
+    <div class="spinner-border text-secondary spinner-border-sm m-2" role="status" *ngIf="estudianteService.loading$ | async">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <table class="table table-hover table-sm">
+      <thead>
+        <tr>
+          <th>Numero Identificación</th>
+          <th>Nombres</th>
+          <th>Apeillidos</th>
+          <th>Inscrpción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of data$ | async">
+          <td>{{ item.numeroIdentificacion}}</td>
+          <td>{{ item.nombres }}</td>
+          <td>{{ item.apellidos }}</td>
+          <td>{{ item.fechaInscrito | date: 'dd/MM/yyyy' }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <app-pagination
+      [service]="estudianteService"
+    />
+  </div>
+</div>
