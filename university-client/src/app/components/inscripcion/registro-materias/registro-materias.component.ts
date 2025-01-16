@@ -55,20 +55,20 @@ export class RegistroMateriasComponent implements OnInit {
   }
 
   seleccionarMateria(materia: Materia) {
-    const materiaAgregada = this.materiasSeleccionadas.find((m) => m.materiaId === materia.materiaId);
+    const materiaAgregada = this.materiasSeleccionadas.some(m => m.materiaId === materia.materiaId);
+    const mismoProfesor = this.materiasSeleccionadas.some(m => m.profesorId === materia.profesorId);
 
-    if (!materiaAgregada) {
-      if (this.creditos > 0) {
-        if (!this.materiasSeleccionadas.some(m => m.profesorId === materia.profesorId)) {
-          this.materiasSeleccionadas.push(materia);
-          const index = this.materias.indexOf(materia);
-          this.materias.splice(index, 1);
-          this.creditos -= materia.creditos!;
-        } else {
-          this.toast.showWarning('Advertencia', 'No pude inscribir otra materia con el mismo profesor');
-        }
-      } else
-        this.toast.showWarning('Advertencia', 'Sr. usuario ya no cuenta con mas créditos para inscribir materias');
+    if (this.creditos <= 0 || materia.creditos! > this.creditos )
+      this.toast.showWarning('Advertencia', 'Sr. usuario ya no cuenta con créditos suficientes para inscribir la materia');
+    else if (materiaAgregada)
+      this.toast.showWarning('Advertencia', 'Sr. usuario ya inscribió esta materia');
+    else if (mismoProfesor)
+      this.toast.showWarning('Advertencia', 'No puede inscribir otra materia con el mismo profesor');
+    else {
+      this.materiasSeleccionadas.push(materia);
+      const index = this.materias.indexOf(materia);
+      this.materias.splice(index, 1);
+      this.creditos -= materia.creditos!;
     }
   }
 
@@ -80,13 +80,12 @@ export class RegistroMateriasComponent implements OnInit {
   }
 
   inscribirMaterias() {
-    const clases = this.materiasSeleccionadas.map(m => {
-      const clase: Clase = {
+    const clases = this.materiasSeleccionadas.map(m =>
+       <Clase> {
         profesorId: m.profesorId,
         materiaId: m.materiaId
       }
-      return clase;
-    });
+    );
 
     this.claseService.create(clases).subscribe({
       next: () => {
